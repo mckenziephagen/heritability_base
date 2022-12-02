@@ -13,10 +13,12 @@ RUN Rscript -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"
 # Create a directory named after our project directory
 WORKDIR /tracto
 
-# approach one
-ENV RENV_PATHS_LIBRARY /tracto/renv/library
+# approach two
 
-# Copy the lockfile over to the Docker image
+RUN mkdir -p renv
+COPY .Rprofile .Rprofile
+COPY renv/activate.R renv/activate.R
+COPY renv/settings.dcf renv/settings.dcf
 COPY renv.lock renv.lock
 
 # Install all R packages specified in renv.lock - this takes a really long time 
