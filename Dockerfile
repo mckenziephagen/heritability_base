@@ -1,8 +1,10 @@
 FROM rocker/r-ver:4.1.0
 
 # Install some linux libraries that R packages need
-RUN apt-get update && apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev cmake libglu1-mesa-dev libpng-dev tcl tk libfontconfig1-dev libharfbuzz-dev libfribidi-dev libtiff5-dev 
-## @ ariel, this is getting bloated, how do we cull? 
+RUN apt-get update && apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev cmake libglu1-mesa-dev libpng-dev tcl tk libfontconfig1-dev libharfbuzz-dev libfribidi-dev libtiff5-dev python3-pip
+
+RUN pip install jupyterlab
+
 # Use renv version 
 ENV RENV_VERSION 0.16.0
 
